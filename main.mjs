@@ -13,4 +13,4 @@ app.use(express.json());
 app.use(express.static('public'));
 app.use('/', productRoutes);
 
-app.listen(3000);
+app.listen(3003, console.log('http://localhost:3003'));
