@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongodb';
 import connection from '../db/connection.mjs';
 
 class Product {
@@ -21,6 +22,15 @@ class Product {
 
   static getProducts() {
     const product = connection.db().collection('products').find().toArray();
+
+    return product;
+  }
+
+  static async getProductById(id) {
+    const product = await connection
+      .db()
+      .collection('products')
+      .findOne({ _id: new ObjectId(id) });
 
     return product;
   }

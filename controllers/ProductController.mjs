@@ -1,4 +1,5 @@
 import Product from '../models/Product.mjs';
+import { ObjectId } from 'mongodb';
 
 class ProductController {
   static async showProducts(req, res) {
@@ -21,6 +22,17 @@ class ProductController {
     product.save();
 
     res.redirect('/');
+  }
+  static async getProduct(req, res) {
+    const { id } = req.params;
+
+    if (!ObjectId.isValid(id)) {
+      return res.status(400).send('ID inválido');
+    }
+
+    const product = await Product.getProductById(id);
+
+    res.render('products/product', { product });
   }
 }
 
