@@ -41,6 +41,13 @@ class ProductController {
 
     res.redirect('/');
   }
+  static async getFullForm(req, res) {
+    const id = req.params.id;
+
+    const product = await Product.getProductById(id);
+
+    res.render('products/edit', { product });
+  }
 }
 
 export default ProductController;
