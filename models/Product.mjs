@@ -40,6 +40,17 @@ class Product {
 
     return;
   }
+
+  updateProduct(id) {
+    if (!ObjectId.isValid(id)) {
+      throw new Error('ID inválido');
+    }
+
+    return connection
+      .db()
+      .collection('products')
+      .updateOne({ _id: new ObjectId(id) }, { $set: this });
+  }
 }
 
 export default Product;
