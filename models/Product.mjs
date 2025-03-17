@@ -34,6 +34,12 @@ class Product {
 
     return product;
   }
+
+  static async removeProductById(id) {
+    await connection.db().collection('products').deleteOne({ _id: new ObjectId(id) });
+
+    return;
+  }
 }
 
 export default Product;
